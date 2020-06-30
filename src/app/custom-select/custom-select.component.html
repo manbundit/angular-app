@@ -1,0 +1,12 @@
+<div class="input-wrapper">
+    <label class="label">{{label}}</label>
+    <div class="placeholder" *ngIf="placeholder && !value">{{placeholder}}</div>
+    <select class="custom-input" [class.invalid]="isInvalidFormat || isEmpty" [disabled]="disabled" (input)="handleSelect($event)" [(ngModel)]="value" #ref="ngModel">
+        <option disabled selected>โปรดระบุ</option>
+        <option *ngFor="let item of children" [value]="item.methodName">{{item.methodName}}</option>
+    </select>
+    <div class="validate-bubble" *ngIf="isInvalidFormat; else empty">{{validateText.patternMismatch}}</div>   
+    <ng-template #empty>
+        <div class="validate-bubble" *ngIf="isEmpty">{{validateText.isEmpty}}</div>           
+    </ng-template>            
+</div>

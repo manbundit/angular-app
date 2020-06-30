@@ -1,0 +1,48 @@
+.label{
+    font-family: Prompt;
+    font-size: 14px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.14;
+    letter-spacing: normal;
+    color: #354a48;
+    padding-bottom: 5px;
+}
+.placeholder{
+    pointer-events: none;
+    font-size: 14px;
+    position: absolute;
+    color: #b9c1c0;
+    bottom: 24px;
+    left: 10px;
+}
+.input-wrapper{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-bottom: 15px;
+}
+select{
+    padding-left: 10px;
+    padding-right: 10px;
+    option{
+        &[disabled]{
+            color: #b9c1c0;
+        }
+    }
+}
+
+.custom-input{
+    max-width: 300px;
+    width: 100%;
+    min-height: 36px;
+    border-radius: 3px;
+    border: solid 1px #cccccc;
+    background-color: #ffffff;
+    &.invalid{
+        outline-color: rgba(236, 81, 54,0.9);
+        border-color: rgba(236, 81, 54,0.9);
+    }
+}

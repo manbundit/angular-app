@@ -1,0 +1,8 @@
+<div class="input-wrapper">
+    <label class="label">{{label}} {{required ? '*': ''}}</label>
+    <input class="custom-input" [maxlength]="maxlength" [class.invalid]="isInvalidFormat || isEmpty" name="name" (input)="handleChange(value)" [(ngModel)]="value" [placeholder]="placeholder" #ref="ngModel" [required]="required"/>
+        <div class="validate-bubble" *ngIf="isInvalidFormat; else empty">{{validateText.patternMismatch}}</div>   
+        <ng-template #empty>
+            <div class="validate-bubble" *ngIf="isEmpty">{{validateText.isEmpty}}</div>           
+        </ng-template>            
+</div>

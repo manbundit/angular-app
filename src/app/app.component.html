@@ -1,0 +1,35 @@
+<div class="content">
+	<header class="header"></header>
+	
+	<div class="layout-wrap">
+		<div class="form-box">
+			<div class="col-left">
+				<div class="wrap-image">
+					<img src="assets/images/group-4.svg">
+				</div>
+			</div>
+			<form class="col-right" #form="ngForm">
+				<!-- {{diagnostic}} -->
+				<div class="title">ข้อมูลอื่นๆ</div>
+				<app-custom-input maxlength="13" class="form-control" [isEmpty]="identity.errors?.required && !identity.pristine" [isInvalidFormat]="identity.errors?.invalidFormat && !identity.errors?.required" label="เลขประชาชน 13 หลัก" identityCard name="identity" required="true" [(ngModel)]="model.identity" #identity="ngModel"></app-custom-input>	
+				<app-custom-input maxlength="10" class="form-control" [isEmpty]="date.errors?.required && !date.pristine" [isInvalidFormat]="date.errors?.invalidFormat && !date.errors?.required" label="วันที่โอน" date name="date" required="true" [(ngModel)]="model.date" #date="ngModel"></app-custom-input>	
+				
+				<div class="separator"></div>
+				<div class="label">ธนาคารที่โอนเงิน</div>
+				<div class="bank-list" [class.has-selected]="selectedBank">
+					<div class="bank-item" *ngFor="let bank of bankList" clickable (click)="selectBank(bank);" [class.selected]="selectedBank?.id == bank.id">
+						<img [src]="bank.image_url" [alt]="bank.title"/>
+					</div>
+				</div>
+
+				<!-- <app-custom-select [disabled]="!selectedBank" (output)="addDataToForm('method',$event)" label="test" [children]="selectedBank?.paymentMethod ? selectedBank.paymentMethod : []"></app-custom-select> -->
+				<div *ngIf="!selectedBank || selectedBank?.paymentMethod.length > 0">
+					<app-custom-select name="method" [disabled]="!selectedBank" 
+					required="true" placeholder="โปรดระบุ"
+					[(ngModel)]="model.method" label="วิธีโอนเงินเข้าบัญชีพนักงาน" [children]="selectedBank?.paymentMethod ? selectedBank.paymentMethod : []" #method="ngModel"></app-custom-select>			
+				</div>
+				<button class="button" (click)="submitForm(form);" [disabled]="!form.form.valid || !selectedBank">FINISH</button>
+			</form>	
+		</div>
+	</div>
+</div>

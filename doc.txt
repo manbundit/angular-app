@@ -1,0 +1,14 @@
+run
+npm install -g @angular/cli
+
+npm install --save-dev @angular-devkit/build-angular
+
+ng new itax-assignment
+
+cd itax-assignment
+ng serve --open
+
+ng generate component custom-input
+
+
+
